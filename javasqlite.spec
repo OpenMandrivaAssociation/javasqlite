@@ -56,8 +56,8 @@ API documentation for %{name}.
 %clean
 %{__rm} -rf %{buildroot}
 
-%check
-%{make} test
+#%check
+#%{make} test
 
 %files
 %defattr(0644,root,root,0755)
