@@ -1,6 +1,6 @@
 Name:           javasqlite
-Version:        20080420
-Release:        %mkrel 0.1.1
+Version:        20081006
+Release:        %mkrel 0.1.0
 Summary:        SQLite Java Wrapper/JDBC Driver
 
 Group:          Development/Java
@@ -8,7 +8,7 @@ License:        BSD
 URL:            http://www.ch-werner.de/javasqlite/
 Source0:        http://www.ch-werner.de/javasqlite/%{name}-%{version}.tar.gz
 # jnipath: Fedora specific, no need to send upstream
-Patch0:         %{name}-20080315-jnipath.patch
+Patch0:         %{name}-20081006-jnipath.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires:  sqlite-devel
