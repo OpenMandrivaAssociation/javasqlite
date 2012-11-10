@@ -1,0 +1,35 @@
+diff -up javasqlite-20081006/Makefile.in.orig javasqlite-20081006/Makefile.in
+--- javasqlite-20081006/Makefile.in.orig	2008-10-06 11:05:57.000000000 +0300
++++ javasqlite-20081006/Makefile.in	2008-10-07 19:54:02.000000000 +0300
+@@ -150,16 +150,16 @@ configure:	configure.in
+ test:
+ 	$(JAVAC) -classpath sqlite.jar:$(PWD) test.java
+ 	LD_LIBRARY_PATH="$$LD_LIBRARY_PATH:$(PWD)/.libs" \
+-	$(JAVA_RUN) -classpath sqlite.jar:$(PWD) test
++	$(JAVA_RUN) -classpath sqlite.jar:$(PWD) -DSQLite.library.path=$(PWD)/.libs test
+ 
+ test2:	test
+ 	LD_LIBRARY_PATH="$$LD_LIBRARY_PATH:$(PWD)/.libs" \
+-	$(JAVA_RUN) -classpath sqlite.jar:$(PWD) test db2
++	$(JAVA_RUN) -classpath sqlite.jar:$(PWD) -DSQLite.library.path=$(PWD)/.libs test db2
+ 
+ test3:
+ 	$(JAVAC) -classpath sqlite.jar:$(PWD) test3.java
+ 	LD_LIBRARY_PATH="$$LD_LIBRARY_PATH:$(PWD)/.libs" \
+-	$(JAVA_RUN) -classpath sqlite.jar:$(PWD) test3
++	$(JAVA_RUN) -classpath sqlite.jar:$(PWD) -DSQLite.library.path=$(PWD)/.libs test3
+ 
+ clean:
+ 	$(RM) SQLite/*.class SQLite/@JDBCVER@/*.class *.lo *.la *.o *~ \
+diff -up javasqlite-20081006/SQLite/Database.java.orig javasqlite-20081006/SQLite/Database.java
+--- javasqlite-20081006/SQLite/Database.java.orig	2008-10-06 11:03:04.000000000 +0300
++++ javasqlite-20081006/SQLite/Database.java	2008-10-07 19:51:00.000000000 +0300
+@@ -783,7 +783,7 @@ public class Database {
+ 	try {
+ 	    String path = System.getProperty("SQLite.library.path");
+ 	    if (path == null || path.length() == 0) {
+-		System.loadLibrary("sqlite_jni");
++		System.load("@JNIPATH@/" + System.mapLibraryName("sqlite_jni"));
+ 	    } else {
+ 		try {
+ 		    java.lang.reflect.Method mapLibraryName;
