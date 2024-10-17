@@ -5,7 +5,7 @@ Summary:        SQLite Java Wrapper/JDBC Driver
 
 Group:          Development/Java
 License:        BSD
-URL:            http://www.ch-werner.de/javasqlite/
+URL:            https://www.ch-werner.de/javasqlite/
 Source0:        http://www.ch-werner.de/javasqlite/%{name}-%{version}.tar.gz
 # jnipath: Fedora specific, no need to send upstream
 Patch0:         %{name}-20081006-jnipath.patch
